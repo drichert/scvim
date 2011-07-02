@@ -153,7 +153,6 @@ endfunction
 
 " ========================================================================================
 
-
 function SCFormatText(text)
 	let l:text = substitute(a:text, '\', '\\\\', 'g')
 	let l:text = substitute(l:text, '"', '\\"', 'g')
@@ -240,8 +239,13 @@ function SCdef(subject)
   call SendToSCSilent('SCVim.openClass("' . a:subject . '");')
 endfun
 
+" we open the qt help browser 
 function SChelp(subject)
-  call SendToSCSilent('SCVim.findHelp("' . a:subject . '");')
+  call SendToSCSilent('HelpBrowser.openHelpFor("' . a:subject . '");')
+endfun
+
+function SClangHelpBrowser()
+  call SendToSCSilent('Help.gui;')
 endfun
 
 function SCreference(subject)
@@ -261,5 +265,6 @@ com -nargs=1 SClangfree call SClang_free("<args>")
 com -nargs=0 SClangStart call SClangStart()
 com -nargs=0 SClangKill call SClangKill()
 com -nargs=0 SClangRestart call SClangRestart()
+com -nargs=0 SChelp call SClangHelpBrowser()
 
 " end supercollider.vim
